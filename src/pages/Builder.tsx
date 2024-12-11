@@ -191,17 +191,17 @@ export function Builder() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-900 flex flex-col">
-      <header className="bg-gray-800 border-b border-gray-700 px-6 py-4">
-        <h1 className="text-xl font-semibold text-gray-100">Website Builder</h1>
+    <div className="h-screen bg-neutral-900 flex flex-col">
+      <header className="bg-black border-b border-gray-700 px-6 py-2">
+        <h1 className="text-xl font-semibold text-gray-100">NeoSite</h1>
         <p className="text-sm text-gray-400 mt-1">Prompt: {prompt}</p>
       </header>
       
-      <div className="flex-1 overflow-hidden">
-        <div className="h-full grid grid-cols-4 gap-6 p-6">
-          <div className="col-span-1 space-y-6 overflow-auto">
+      <div className="flex-1 overflow-hidden bg-neutral-900 mt-4">
+        <div className="h-full grid grid-cols-4 gap-6 p-6 py-2">
+          <div className="col-span-1 space-y-2 overflow-auto ">
             <div>
-              <div className="max-h-[75vh] overflow-scroll">
+              <div className="max-h-[75vh] overflow-scroll rounded-md bg-neutral-800">
                 <StepsList
                   steps={steps}
                   currentStep={currentStep}
@@ -209,13 +209,13 @@ export function Builder() {
                 />
               </div>
               <div>
-                <div className='flex'>
+                <div className='flex w-full gap-x-2 mt-3 transform scale-90'>
                   <br />
                   {(loading || !templateSet) && <Loader />}
                   {!(loading || !templateSet) && <div className='flex'>
                     <textarea value={userPrompt} onChange={(e) => {
                     setPrompt(e.target.value)
-                  }} className='p-2 w-full'></textarea>
+                  }} className='w-64 rounded-md -ml-6'></textarea>
                   <button onClick={async () => {
                     const newMessage = {
                       role: "user" as "user",
@@ -239,7 +239,7 @@ export function Builder() {
                       status: "pending" as "pending"
                     }))]);
 
-                  }} className='bg-purple-400 px-4'>Send</button>
+                  }} className='bg-purple-400 px-4 rounded-md ml-4'>Send</button>
                   </div>}
                 </div>
               </div>
@@ -251,7 +251,7 @@ export function Builder() {
                 onFileSelect={setSelectedFile}
               />
             </div>
-          <div className="col-span-2 bg-gray-900 rounded-lg shadow-lg p-4 h-[calc(100vh-8rem)]">
+          <div className="col-span-2 bg-neutral-800 rounded-lg shadow-lg p-4 h-[calc(100vh-8rem)]">
             <TabView activeTab={activeTab} onTabChange={setActiveTab} />
             <div className="h-[calc(100%-4rem)]">
               {activeTab === 'code' ? (

@@ -25,7 +25,7 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
   };
 
   return (
-    <div className="select-none">
+    <div className="select-none overflow-auto">
       <div
         className="flex items-center gap-2 p-2 hover:bg-gray-800 rounded-md cursor-pointer"
         style={{ paddingLeft: `${depth * 1.5}rem` }}
@@ -48,7 +48,7 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
         <span className="text-gray-200">{item.name}</span>
       </div>
       {item.type === 'folder' && isExpanded && item.children && (
-        <div>
+        <div className="ml-4"> {/* Add some margin to the children for better alignment */}
           {item.children.map((child, index) => (
             <FileNode
               key={`${child.path}-${index}`}
@@ -65,12 +65,12 @@ function FileNode({ item, depth, onFileClick }: FileNodeProps) {
 
 export function FileExplorer({ files, onFileSelect }: FileExplorerProps) {
   return (
-    <div className="bg-gray-900 rounded-lg shadow-lg p-4 h-full overflow-auto">
-      <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-100">
+    <div className="bg-neutral-800 rounded-lg shadow-lg p-4 overflow-y-auto max-h-[600px]">
+      <h2 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-100 rounded-lg">
         <FolderTree className="w-5 h-5" />
         File Explorer
       </h2>
-      <div className="space-y-1">
+      <div className="space-y-1 rounded-lg">
         {files.map((file, index) => (
           <FileNode
             key={`${file.path}-${index}`}
